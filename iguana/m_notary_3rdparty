@@ -1,8 +1,4 @@
 #!/bin/bash
-pkill -15 iguana
-rm -f ../agents/iguana *.o
-git pull
-./m_notary_build_fast
 
 # unlock any locked utxos. 
 komodo-cli lockunspent true `komodo-cli listlockunspent | jq -c .` 
