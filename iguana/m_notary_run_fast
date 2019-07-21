@@ -2,14 +2,6 @@
 # Unlock all lockunspents to make sure we can access all our utxo!
 komodo-cli lockunspent true `komodo-cli listlockunspent | jq -c .`
 
-#cd secp256k1; ./m_unix; cd ..
-#cd ../crypto777; ./m_LP; cd ../iguana
-##gcc -g -fno-aggressive-loop-optimizations -Wno-deprecated -c -O2 -DISNOTARYNODE=1 -DLIQUIDITY_PROVIDER=1 *.c ../basilisk/basilisk.c ../gecko/gecko.c ../datachain/datachain.c
-#clang -g -Wno-deprecated -c -O2 -DISNOTARYNODE=1 -DLIQUIDITY_PROVIDER=1 *.c ../basilisk/basilisk.c ../gecko/gecko.c ../datachain/datachain.c
-##gcc -g -fno-aggressive-loop-optimizations -Wno-deprecated -c -DISNOTARYNODE=1 -DLIQUIDITY_PROVIDER=1  main.c iguana777.c iguana_bundles.c ../basilisk/basilisk.c
-#clang -g  -Wno-deprecated -c -DISNOTARYNODE=1 -DLIQUIDITY_PROVIDER=1  main.c iguana777.c iguana_bundles.c ../basilisk/basilisk.c
-#clang -g -o ../agents/iguana *.o ../agents/libcrypto777.a -lnanomsg -lcurl -lssl -lcrypto -lpthread -lz -lm -lsodium
-
 iguana_arg=${2:-notary}
 stdbuf -oL nohup $1 ../agents/iguana-fast notary_nosplit > /tmp/nn.log &
 
@@ -20,23 +12,15 @@ sleep 4
 curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"SuperNET\",\"method\":\"myipaddr\",\"ipaddr\":\"$myip\"}"
 sleep 3
 
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"64.120.113.130\"}"   # cipi_AR
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"209.58.144.205\"}"   # cipi_NA
 curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"95.213.238.100\"}"
 curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"77.75.121.138\"}"
 curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"103.6.12.105\"}"
 curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"139.99.209.214\"}"
-#curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"82.202.193.100\"}"
-#curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"54.95.68.31\"}"
-#curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"139.99.149.173\"}"
 
-
-#tests/addnotarys_7776
 coins/btc_7776
-#coins/ltc_7776
 coins/kmd_7776
-#coins/chips_7776
-#coins/game_7776
-#coins/emc2_7776
-#coins/gin_7776
 ./wp_7776
 
 coins/revs_7776
@@ -50,7 +34,6 @@ coins/jumblr_7776
 coins/crypto_7776
 coins/pangea_7776
 coins/mgw_7776
-#coins/coqui_7776
 coins/wlc_7776
 coins/kv_7776
 coins/ceal_7776
@@ -67,17 +50,13 @@ coins/dsec_7776
 coins/glxt_7776
 coins/eql_7776
 coins/zilla_7776
-#coins/vrsc_7776
 coins/rfox_7776
 coins/sec_7776
 coins/ccl_7776
-#coins/hush_7776
 coins/pirate_7776
-#coins/mgnx_7776
 coins/pgt_7776
 coins/kmdice_7776
 coins/dion_7776
-#coins/zex_7776
 coins/ksb_7776
 coins/our_7776
 coins/iln_7776
@@ -88,9 +67,7 @@ coins/hush3_7776
 coins/koin_7776
 coins/zexo_7776
 coins/k64_7776
+coins/thc_7776
 
-#curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"passthru\",\"method\":\"paxfiats\",\"timeout\":900000}"
-
-#curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"addnotary\",\"ipaddr\":\"$myip\"}"
 sleep 30
 curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"dpow\",\"symbol\":\"KMD\",\"pubkey\":\"$pubkey\"}"
