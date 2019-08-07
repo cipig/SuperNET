@@ -532,38 +532,6 @@ cJSON *dpow_gettxout(struct supernet_info *myinfo,struct iguana_info *coin,bits2
     return(json);
 }
 
-int dpow_lockunspent(struct supernet_info *myinfo,struct iguana_info *coin,char *coinaddr,char *txid,int32_t vout)
-{
-    char buf[128],*retstr;
-    if ( coin->FULLNODE < 0 )
-    {
-        sprintf(buf,"false, [{\"txid\":\"%s\",\"vout\":%d}]", txid, vout);
-        if ( (retstr= bitcoind_passthru(coin->symbol,coin->chain->serverport,coin->chain->userpass,"lockunspent",buf)) != 0 )
-        {
-            //printf("RESULT.(%s)\n",retstr);
-            free(retstr);
-            return(1);
-        } // else printf("%s null retstr from (%s)n",coin->symbol,buf);
-    }
-    return(0);
-}
-
-int dpow_unlockunspent(struct supernet_info *myinfo,struct iguana_info *coin,char *coinaddr,char *txid,int32_t vout)
-{
-    char buf[128],*retstr;
-    if ( coin->FULLNODE < 0 )
-    {
-        sprintf(buf,"true, [{\"txid\":\"%s\",\"vout\":%d}]", txid, vout);
-        if ( (retstr= bitcoind_passthru(coin->symbol,coin->chain->serverport,coin->chain->userpass,"lockunspent",buf)) != 0 )
-        {
-            //printf("RESULT.(%s)\n",retstr);
-            free(retstr);
-            return(1);
-        } //else printf("%s null retstr from (%s)n",coin->symbol,buf);
-    }
-    return(0);
-}
-
 char *dpow_decoderawtransaction(struct supernet_info *myinfo,struct iguana_info *coin,char *rawtx)
 {
     char *retstr,*paramstr; cJSON *array;
